@@ -1,0 +1,13 @@
+# Custom Ollama image with llama2 pre-installed
+FROM ollama/ollama:latest
+
+# Create directory for models
+RUN mkdir -p /root/.ollama
+
+# Start Ollama in background and pull llama2 model
+RUN ollama serve & \
+    sleep 5 && \
+    ollama pull llama2 && \
+    pkill ollama
+
+# The default command from the base image will run ollama serve

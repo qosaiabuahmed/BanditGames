@@ -1,0 +1,26 @@
+.message {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.loading {
+  padding: 15px;
+  background: white;
+  border-radius: 15px;
+  max-width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.loadingDots span {
+  animation: blink 1.4s infinite;
+  font-size: 20px;
+  color: #667eea;
+}
+
+.loadingDots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loadingDots span:nth-child(3) {
+  animation-delay: 0.4s;
+}

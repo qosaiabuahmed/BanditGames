@@ -1,0 +1,45 @@
+# Environment variables (contains credentials)
+.env
+
+# V3 dataset generation
+scripts/
+logs/
+*.log
+
+# Training data (tracked by DVC instead)
+data/*.parquet
+data/training_data_*.parquet
+
+# Trained models (large files, can be regenerated)
+data/models/
+*.keras
+*.pkl
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# ML artifacts
+mlruns/
+.mlflow/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Docker
+docker-compose.override.yml

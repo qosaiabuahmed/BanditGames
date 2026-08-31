@@ -1,0 +1,79 @@
+.message {
+  margin-bottom: 20px;
+  display: flex;
+  animation: slideIn 0.3s ease-out;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.messageContent {
+  max-width: 70%;
+  padding: 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+
+.messageHeader {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.messageHeader > div {
+  flex: 1;
+}
+
+.speakerButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.1s;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.speakerButton:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: scale(1.1);
+}
+
+.speakerButton:active {
+  transform: scale(0.95);
+}
+
+.message.user .messageContent {
+  background: #667eea;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.message.bot .messageContent {
+  background: white;
+  color: #333;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.messageMeta {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+.messageContent ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.messageContent p {
+  margin-top: 10px;
+}

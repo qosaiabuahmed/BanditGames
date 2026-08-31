@@ -1,0 +1,119 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
+}
+
+group = 'be.kdg'
+version = '0.0.1-SNAPSHOT'
+description = 'bandit-games-backend'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()  // For locally published SDK
+}
+
+ext {
+    springModulithVersion = '1.4.1'
+}
+
+dependencies {
+    implementation 'org.springframework.modulith:spring-modulith-starter-core'
+    implementation 'org.springframework.modulith:spring-modulith-core'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // BanditGames SDK
+    implementation project(':bandit-games-sdk')
+
+    implementation 'org.keycloak:keycloak-admin-client:23.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:testcontainers:2.0.2'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:rabbitmq'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.instancio:instancio-junit:5.5.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.2.0'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+    runtimeOnly 'org.postgresql:postgresql:42.7.7'
+    runtimeOnly 'org.springframework.boot:spring-boot-docker-compose'
+    runtimeOnly 'com.h2database:h2'
+
+    compileOnly 'org.projectlombok:lombok'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    forkEvery = 1
+    // In CI, run tests sequentially to avoid database conflicts
+    // Locally with Testcontainers, parallel is fine (each test gets own container)
+    maxParallelForks = System.getenv('CI') == 'true' ? 1 : 4
+
+    jvmArgs '-XX:+EnableDynamicAgentLoading'
+    finalizedBy jacocoTestReport
+
+    // Pass environment variables from GitLab CI to test JVM
+    environment 'CI', System.getenv('CI') ?: 'false'
+    environment 'SPRING_RABBITMQ_HOST', System.getenv('SPRING_RABBITMQ_HOST') ?: 'localhost'
+    environment 'SPRING_RABBITMQ_PORT', System.getenv('SPRING_RABBITMQ_PORT') ?: '5672'
+    environment 'SPRING_RABBITMQ_USERNAME', System.getenv('SPRING_RABBITMQ_USERNAME') ?: 'guest'
+    environment 'SPRING_RABBITMQ_PASSWORD', System.getenv('SPRING_RABBITMQ_PASSWORD') ?: 'guest'
+    environment 'SPRING_DATASOURCE_URL', System.getenv('SPRING_DATASOURCE_URL') ?: 'jdbc:postgresql://localhost:5432/testdb'
+    environment 'SPRING_DATASOURCE_USERNAME', System.getenv('SPRING_DATASOURCE_USERNAME') ?: 'testuser'
+    environment 'SPRING_DATASOURCE_PASSWORD', System.getenv('SPRING_DATASOURCE_PASSWORD') ?: 'testpassword'
+
+    // Show test output so we can debug CI issues
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+        showExceptions true
+        showCauses true
+        showStackTraces true
+        showStandardStreams = true
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << '-parameters'
+}

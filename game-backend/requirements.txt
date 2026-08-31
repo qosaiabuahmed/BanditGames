@@ -1,0 +1,47 @@
+# =============================================================================
+# Connect Four Backend - Python Dependencies
+# =============================================================================
+
+# REST API Framework
+fastapi==0.105.0
+uvicorn==0.25.0
+pydantic==2.5.3
+
+# Database
+psycopg2-binary==2.9.9
+
+# Data Manipulation and ML Preparation
+pandas==2.1.4
+numpy==1.26.2
+pyarrow==14.0.1
+
+# HTTP Client (for AI service communication)
+requests==2.31.0
+
+# Environment Management
+python-dotenv==1.0.0
+
+# Testing
+pytest==7.4.3
+coverage==7.4.0
+
+# ============================================================================
+# ML & AI DEPENDENCIES (For model training and deployment)
+# ============================================================================
+
+# Machine Learning frameworks
+scikit-learn==1.3.2
+tensorflow==2.15.0
+
+# ML Experiment tracking
+mlflow==2.9.2
+
+# Data versioning (for training data management)
+dvc==3.55.2
+wandb==0.16.2
+
+# Visualization for reports
+matplotlib==3.8.2
+seaborn==0.13.0
+
+pika==1.3.2

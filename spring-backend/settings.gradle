@@ -1,0 +1,3 @@
+rootProject.name = 'bandit-games-backend'
+
+include 'bandit-games-sdk'

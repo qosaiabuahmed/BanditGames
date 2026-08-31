@@ -1,0 +1,5 @@
+outs:
+- md5: 2b3be832dd01c8b32704f17c5be38965
+  size: 1287514
+  hash: md5
+  path: connect_four_v1.parquet

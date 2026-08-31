@@ -1,0 +1,2 @@
+# This directory stores exported training data (parquet files)
+# Files are versioned with DVC

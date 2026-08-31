@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Ollama service for LLM inference
+  ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile.ollama
+    container_name: chatbot-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - chatbot-network
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  # Chatbot API service
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chatbot-api
+    ports:
+      - "7777:7777"
+    environment:
+      - OLLAMA_MODEL=llama2
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - CHROMA_PERSIST_DIR=/app/chroma_db
+      - CACHE_SIZE=100
+      - CACHE_TTL=3600
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./knowledge_base:/app/knowledge_base
+      - ./predefined_cache.json:/app/predefined_cache.json
+    networks:
+      - chatbot-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7777/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+networks:
+  chatbot-network:
+    driver: bridge
+    name: chatbot-network
+
+volumes:
+  ollama_data:
+    name: chatbot-ollama-data

@@ -1,0 +1,50 @@
+# DVC Pipeline for Connect Four Training Data
+#
+# This pipeline automates:
+# 1. Self-play game generation
+# 2. Data export to parquet
+#
+# Usage:
+#   dvc repro              # Run full pipeline
+#   dvc repro export       # Run only export stage
+#
+# Prerequisites:
+#   - Docker containers running (docker-compose up -d)
+#   - DVC initialized (dvc init)
+
+stages:
+  # Stage 1: Generate self-play games
+  self-play:
+    cmd: >
+      docker-compose exec -T app python -c "
+      from self_play import SelfPlayEngine, SelfPlayConfig
+      config = SelfPlayConfig(num_games=100, difficulty_x=2, difficulty_o=2)
+      engine = SelfPlayEngine(config)
+      engine.run_session()
+      "
+    deps:
+      - src/self_play.py
+      - src/connect_four.py
+      - src/gameplay_logger.py
+    outs:
+      - data/self_play_complete.flag:
+          cache: false
+
+  # Stage 2: Export training data to parquet
+  export:
+    cmd: >
+      docker-compose exec -T app python -c "
+      from logs.gameplay_logger import GameplayLogger
+      import os
+      os.makedirs('data', exist_ok=True)
+      logger = GameplayLogger()
+      logger.export_dataset('data/training_data.parquet')
+      "
+    deps:
+      - src/logs/gameplay_logger.py
+      - data/self_play_complete.flag
+    outs:
+      - data/training_data.parquet
+    metrics:
+      - data/export_metrics.json:
+          cache: false

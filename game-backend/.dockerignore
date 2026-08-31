@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentation (keep database/ERD.md)
+documentation/
+*.md
+!database/*.md
+
+# Test files (not in src/ so won't be copied anyway)
+test_*.py
+*_test.py
+debug_*.py
+check_*.py
+verify_*.py
+
+# Database files (will be in volume)
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env.example
+.env.local
+
+# Saved games (if any)
+*.json
+!project.xml
+
+# High scores
+high_scores.json

@@ -1,0 +1,38 @@
+{
+  "name": "tic-tac-toe-frontend",
+  "version": "1.0.0",
+  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "main": "src/main.tsx",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/kdg-ti/inf-curriculum/domain-integration/integration-5/2025-2026/team10/tic-tac-toe-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kdg-ti/inf-curriculum/domain-integration/integration-5/2025-2026/team10/tic-tac-toe-frontend/issues"
+  },
+  "homepage": "https://gitlab.com/kdg-ti/inf-curriculum/domain-integration/integration-5/2025-2026/team10/tic-tac-toe-frontend#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "sass": "^1.94.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6"
+  }
+}

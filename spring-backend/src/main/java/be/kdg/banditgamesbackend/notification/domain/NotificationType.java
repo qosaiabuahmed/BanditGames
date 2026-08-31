@@ -1,0 +1,13 @@
+package be.kdg.banditgamesbackend.notification.domain;
+
+public enum NotificationType {
+    FRIEND_REQUEST_RECEIVED,
+    FRIEND_REQUEST_ACCEPTED,
+    FRIEND_REQUEST_DECLINED,
+    GAME_INVITATION_RECEIVED,
+    GAME_INVITATION_ACCEPTED,
+    MATCH_STARTED,
+    ACHIEVEMENT_UNLOCKED,
+    SYSTEM_ANNOUNCEMENT,
+    GUEST_WELCOME
+}

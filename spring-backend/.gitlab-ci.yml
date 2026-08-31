@@ -1,0 +1,114 @@
+stages:
+  - compile
+  - test
+  - package
+
+variables:
+  DEFAULT_IMAGE_NAME: gradle:8.5-jdk21
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  DOCKER_IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
+
+compile-job:
+  stage: compile
+  image: $DEFAULT_IMAGE_NAME
+  script:
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 hour
+
+test-job:
+  stage: test
+  image: $DEFAULT_IMAGE_NAME
+  variables:
+    SPRING_PROFILES_ACTIVE: integration
+    CI: "true"
+    SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/testdb"
+    SPRING_DATASOURCE_USERNAME: "testuser"
+    SPRING_DATASOURCE_PASSWORD: "testpassword"
+    SPRING_RABBITMQ_HOST: "rabbitmq"
+    SPRING_RABBITMQ_PORT: "5672"
+    SPRING_RABBITMQ_USERNAME: "testuser"
+    SPRING_RABBITMQ_PASSWORD: "testpassword"
+    SPRING_RABBITMQ_CONNECTION_TIMEOUT: "60000"
+    SPRING_RABBITMQ_REQUESTED_HEARTBEAT: "60"
+  services:
+    - name: postgres:17.6-alpine
+      alias: postgres
+      variables:
+        POSTGRES_DB: testdb
+        POSTGRES_USER: testuser
+        POSTGRES_PASSWORD: testpassword
+    - name: rabbitmq:3.13.7-management-alpine
+      alias: rabbitmq
+      variables:
+        RABBITMQ_DEFAULT_USER: testuser
+        RABBITMQ_DEFAULT_PASS: testpassword
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq postgresql-client netcat-openbsd curl
+    # Wait for PostgreSQL to be ready
+    - |
+      echo "Waiting for PostgreSQL to be ready..."
+      for i in $(seq 1 30); do
+        if pg_isready -h postgres -p 5432 -U testuser; then
+          echo "PostgreSQL is ready!"
+          break
+        fi
+        echo "PostgreSQL not ready yet, waiting... ($i/30)"
+        sleep 2
+      done
+    # Wait for RabbitMQ to be ready
+    - |
+      echo "Waiting for RabbitMQ to be ready..."
+      for i in $(seq 1 30); do
+        if nc -z rabbitmq 5672; then
+          echo "RabbitMQ port is open!"
+          break
+        fi
+        echo "RabbitMQ not ready yet, waiting... ($i/30)"
+        sleep 2
+      done
+    # Verify RabbitMQ management API is ready
+    - |
+      echo "Checking RabbitMQ management API..."
+      for i in $(seq 1 30); do
+        if curl -u testuser:testpassword -f http://rabbitmq:15672/api/overview 2>/dev/null; then
+          echo "RabbitMQ management API is ready!"
+          break
+        fi
+        echo "RabbitMQ management API not ready yet, waiting... ($i/30)"
+        sleep 3
+      done
+    # Add diagnostics
+    - echo "Testing network connectivity to RabbitMQ..."
+    - nc -zv rabbitmq 5672 || true
+    - nc -zv rabbitmq 15672 || true
+    - echo "DNS resolution for rabbitmq:"
+    - getent hosts rabbitmq || true
+    - echo "Environment variables for Spring Boot:"
+    - echo "CI=$CI"
+    - echo "SPRING_RABBITMQ_HOST=$SPRING_RABBITMQ_HOST"
+    - echo "SPRING_RABBITMQ_USERNAME=$SPRING_RABBITMQ_USERNAME"
+  script:
+    - ./gradlew test
+
+package-job:
+  stage: package
+  image: $DEFAULT_IMAGE_NAME
+  dependencies:
+    - compile-job
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - name: docker:27-dind
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq docker.io
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - echo "Packaging the application with bootBuildImage"
+    - ./gradlew bootBuildImage --imageName=$DOCKER_IMAGE --publishImage --imagePlatform=linux/amd64
+    - ./gradlew bootBuildImage --imageName=$DOCKER_IMAGE_LATEST --publishImage --imagePlatform=linux/amd64
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"

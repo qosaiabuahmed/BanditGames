@@ -1,0 +1,396 @@
+{
+  "games": [
+    {
+      "id": "connect-four",
+      "name": "Connect Four",
+      "category": "strategy",
+      "players": "2",
+      "duration": "5-10 minutes",
+      "description": "Connect Four is a two-player connection board game where players take turns dropping colored discs into a vertically suspended grid. The objective is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.",
+      "rules": {
+        "setup": [
+          "The game is played on a vertical board with 6 rows and 7 columns (42 spaces total).",
+          "Each player chooses a color: traditionally red or yellow.",
+          "The board starts empty with all spaces available."
+        ],
+        "gameplay": [
+          "Players take turns dropping one disc at a time into any column.",
+          "The disc falls straight down, occupying the lowest available space within the column.",
+          "Players alternate turns, with Player 1 (typically red) going first.",
+          "A player cannot place a disc in a column that is already full.",
+          "Players must drop their disc into the board during their turn."
+        ],
+        "winning": [
+          "The first player to connect four of their discs in a row wins.",
+          "Winning connections can be horizontal, vertical, or diagonal.",
+          "The game ends immediately when a player achieves four in a row.",
+          "If all 42 spaces are filled without either player connecting four, the game is a draw."
+        ],
+        "strategy_tips": [
+          "Control the center column for more winning opportunities.",
+          "Plan multiple moves ahead to create multiple winning threats.",
+          "Block your opponent's three-in-a-row formations.",
+          "Create 'forks' where you have two ways to win on your next turn.",
+          "Watch for diagonal opportunities which are harder to spot."
+        ]
+      },
+      "common_questions": [
+        {
+          "question": "Can I remove a disc once it's been placed?",
+          "answer": "No, once a disc is dropped into the board, it cannot be removed or moved for the rest of the game."
+        },
+        {
+          "question": "What happens if both players connect four at the same time?",
+          "answer": "This is not possible since players take turns. The player whose turn it is when they complete four in a row wins."
+        },
+        {
+          "question": "Can I win with a square of four discs?",
+          "answer": "No, you must connect four discs in a straight line: horizontally, vertically, or diagonally. A square formation does not count as a win."
+        }
+      ]
+    },
+    {
+      "id": "tic-tac-toe",
+      "name": "Tic-Tac-Toe",
+      "category": "strategy",
+      "players": "2",
+      "duration": "1-3 minutes",
+      "description": "Tic-Tac-Toe is a classic two-player strategy game played on a 3x3 grid. Players take turns marking spaces with their symbol (X or O), aiming to be the first to get three of their marks in a row horizontally, vertically, or diagonally.",
+      "rules": {
+        "setup": [
+          "The game is played on a 3x3 grid (9 spaces total).",
+          "Player X uses 'X' as their symbol, Player O uses 'O'.",
+          "The board starts completely empty.",
+          "Player X always goes first."
+        ],
+        "gameplay": [
+          "Players take turns placing their symbol in any empty cell on the grid.",
+          "Each cell can only be marked once during the game.",
+          "Players alternate turns, with X going first, then O, then X again, and so on.",
+          "Moves are typically specified by row and column coordinates (e.g., '12' means row 1, column 2).",
+          "A player must place their mark during their turn - passing is not allowed."
+        ],
+        "winning": [
+          "The first player to get three of their symbols in a row wins.",
+          "Winning lines can be horizontal (across any row), vertical (down any column), or diagonal (either main diagonal).",
+          "The game ends immediately when a player achieves three in a row.",
+          "If all 9 spaces are filled without either player getting three in a row, the game is a draw (also called a 'cat's game')."
+        ],
+        "strategy_tips": [
+          "The center square is the most valuable position - it's part of four possible winning lines.",
+          "Corner squares are strong positions, each being part of three possible winning lines.",
+          "Always block your opponent if they have two in a row.",
+          "Try to create a 'fork' - a position where you have two ways to win on your next turn.",
+          "If you go first (X), playing center or a corner gives you the best chance to win.",
+          "Perfect play by both players always results in a draw."
+        ]
+      },
+      "common_questions": [
+        {
+          "question": "Can I change my move after placing it?",
+          "answer": "No, once you place your symbol in a cell, it cannot be moved or removed for the rest of the game."
+        },
+        {
+          "question": "What happens if both players get three in a row at the same time?",
+          "answer": "This is impossible since players take turns. Only one player can complete three in a row at a time, and they win immediately."
+        },
+        {
+          "question": "Can I win with three symbols forming an L-shape or other pattern?",
+          "answer": "No, you must get three symbols in a straight line - either horizontally, vertically, or diagonally. Other patterns do not count as a win."
+        },
+        {
+          "question": "Is there a way to guarantee a win?",
+          "answer": "If both players play perfectly, the game will always end in a draw. However, if your opponent makes a mistake, you can win by capitalizing on it."
+        }
+      ]
+    },
+    {
+      "id": "chess",
+      "name": "Chess",
+      "category": "strategy",
+      "players": "2",
+      "duration": "10-60+ minutes",
+      "description": "Chess is a strategic board game played on an 8x8 checkered board between two players. Each player starts with 16 pieces: one king, one queen, two rooks, two bishops, two knights, and eight pawns. The objective is to checkmate the opponent's king, putting it in a position where it is under attack and cannot escape.",
+      "rules": {
+        "setup": [
+          "The game is played on an 8x8 board with 64 squares alternating between light and dark colors.",
+          "Each player has 16 pieces: 1 king, 1 queen, 2 rooks, 2 bishops, 2 knights, and 8 pawns.",
+          "White pieces occupy ranks 1 and 2, black pieces occupy ranks 7 and 8.",
+          "The board is positioned so that each player has a light-colored square on their right-hand corner.",
+          "Queens start on their own color: white queen on a light square, black queen on a dark square.",
+          "From left to right on the first rank: rook, knight, bishop, queen, king, bishop, knight, rook.",
+          "All eight pawns occupy the second rank (for white) or seventh rank (for black)."
+        ],
+        "gameplay": [
+          "White always moves first, then players alternate turns.",
+          "Players must move one piece per turn (except during castling, which moves two pieces).",
+          "Pieces are captured by moving onto the square occupied by an opponent's piece.",
+          "The king can move one square in any direction (horizontal, vertical, or diagonal).",
+          "The queen can move any number of squares in any direction (horizontal, vertical, or diagonal).",
+          "Rooks move any number of squares horizontally or vertically.",
+          "Bishops move any number of squares diagonally.",
+          "Knights move in an 'L' shape: two squares in one direction and one square perpendicular, and can jump over other pieces.",
+          "Pawns move forward one square (or two squares on their first move) and capture diagonally one square forward.",
+          "En passant: A pawn that moves two squares forward can be captured by an enemy pawn as if it had moved only one square.",
+          "Castling: The king moves two squares toward a rook, and the rook moves to the square the king crossed. This is only allowed if neither piece has moved, no pieces are between them, the king is not in check, and the king doesn't pass through or land on a square under attack.",
+          "Pawn promotion: When a pawn reaches the opposite end of the board, it must be promoted to a queen, rook, bishop, or knight."
+        ],
+        "winning": [
+          "Checkmate: The game is won when a player's king is in check and cannot escape. This ends the game immediately.",
+          "Resignation: A player can resign at any time, conceding the game to their opponent.",
+          "Stalemate: The game is a draw if a player has no legal moves and their king is not in check.",
+          "Insufficient material: The game is a draw if neither player has enough pieces to force checkmate (e.g., king vs. king).",
+          "Threefold repetition: The game is a draw if the same position occurs three times with the same player to move.",
+          "Fifty-move rule: The game is a draw if fifty moves occur with no pawn movement or piece capture.",
+          "Draw by agreement: Both players can agree to a draw at any time."
+        ],
+        "strategy_tips": [
+          "Control the center of the board (especially squares e4, d4, e5, d5) for better piece mobility.",
+          "Develop your pieces early in the game - get knights and bishops into play before moving the same piece twice.",
+          "Castle early to protect your king and connect your rooks.",
+          "Don't move your queen out too early - it can become a target.",
+          "Protect your pieces and don't leave them hanging (undefended).",
+          "Look for tactics like forks, pins, skewers, and discovered attacks.",
+          "Think several moves ahead and consider your opponent's best responses.",
+          "In the endgame, activate your king as an attacking piece.",
+          "Pawn structure is important - avoid creating isolated, doubled, or backward pawns when possible.",
+          "Trade pieces when you're ahead in material; avoid trades when you're behind."
+        ]
+      },
+      "common_questions": [
+        {
+          "question": "Can the king capture pieces?",
+          "answer": "Yes, the king can capture enemy pieces just like any other piece, as long as moving to that square doesn't put the king in check."
+        },
+        {
+          "question": "What does 'check' mean?",
+          "answer": "Check means the king is under direct attack. When in check, you must immediately move the king to safety, block the attack, or capture the attacking piece. You cannot make any move that leaves your king in check."
+        },
+        {
+          "question": "Can pawns move backward?",
+          "answer": "No, pawns can only move forward. They can never move backward or sideways, which makes pawn moves particularly important since they cannot be reversed."
+        },
+        {
+          "question": "How many queens can I have?",
+          "answer": "You can have multiple queens through pawn promotion. There's no limit to the number of queens, though having more than two is rare in practical play."
+        },
+        {
+          "question": "What is castling and when can I do it?",
+          "answer": "Castling is a special move involving the king and rook. You can castle if: neither piece has moved, there are no pieces between them, the king is not in check, and the king doesn't move through or into check. It's the only move that moves two pieces at once."
+        },
+        {
+          "question": "Can I take back a move?",
+          "answer": "In casual games, players often allow takebacks, but in tournament play, the 'touch-move' rule applies: if you touch a piece, you must move it if you can legally do so."
+        }
+      ]
+    }
+  ],
+  "platform_guidance": [
+    {
+      "category": "authentication",
+      "topics": [
+        {
+          "title": "Creating an Account",
+          "content": "To create an account on BanditGames, visit the homepage and click the 'Create Account' button. You will be redirected to the Keycloak registration portal. BanditGames uses external Keycloak SSO for secure authentication - there is no local registration form. After completing registration on Keycloak, you will be redirected to the login page."
+        },
+        {
+          "title": "Logging In",
+          "content": "To log in, click the 'Login' button on the homepage. You will be automatically redirected to the secure Keycloak authentication portal. All authentication is handled externally via Keycloak SSO. After successful login, you will be redirected to the Dashboard page."
+        },
+        {
+          "title": "Logging Out",
+          "content": "To log out, click the 'Logout' button available on the Dashboard page or Profile page. This will end your session and return you to the homepage."
+        }
+      ]
+    },
+    {
+      "category": "dashboard",
+      "topics": [
+        {
+          "title": "Dashboard Overview",
+          "content": "The Dashboard is the main hub after login. It displays a welcome message with your username, navigation buttons (Notification Bell, View Profile, Find Friends, Logout), and a dynamic grid of game cards. The dashboard is game-agnostic and displays ALL available games fetched from the backend."
+        },
+        {
+          "title": "Game Cards on Dashboard",
+          "content": "Each game card on the dashboard shows the game emoji icon, game name, and two action buttons: 'Solo Play' (opens the game in a new window for solo play) and 'Find Match' (starts the matchmaking process for that game)."
+        },
+        {
+          "title": "Dashboard Navigation",
+          "content": "From the dashboard, you can access: Game Catalog (Browse Games button), Your Profile (View Profile button), Find Friends (Find Friends button), and Notifications (Notification Bell icon in the header)."
+        }
+      ]
+    },
+    {
+      "category": "games_and_matchmaking",
+      "topics": [
+        {
+          "title": "Starting a Match",
+          "content": "To start a match, go to the Dashboard and click the 'Find Match' button on any game card. This will place you in a matchmaking lobby. You can also click 'Solo Play' to play the game immediately without matchmaking. When in the lobby, you can invite specific friends using the 'Invite Friend' button."
+        },
+        {
+          "title": "Lobby Waiting Screen",
+          "content": "After clicking 'Find Match', you enter a lobby waiting screen. It shows a 'Finding Match...' title with an animated game controller icon, current player count (e.g., '1/2 players'), list of players in the lobby, and two buttons: 'Invite Friend' (to invite specific friends) and 'Cancel Search' (to leave the lobby and return to dashboard). The screen automatically checks the server every 2 seconds for updates."
+        },
+        {
+          "title": "Match Found Screen",
+          "content": "When matchmaking succeeds, you see a 'Match Found!' celebration screen showing the Match ID, Game Name, Players Ready Status, and two buttons: 'Launch Game' (opens the game in a new window) and 'Back to Dashboard' (returns to main dashboard)."
+        },
+        {
+          "title": "Inviting Friends to a Lobby",
+          "content": "While in the lobby waiting screen, click 'Invite Friend' to open a modal showing all your friends. Each friend entry displays their avatar, username, online status, and an 'Invite' button. After clicking invite, the button becomes disabled and shows 'Invited'."
+        },
+        {
+          "title": "Accepting Game Invites",
+          "content": "To accept a game invite, go to the Pending Invites page (/invites) or check your Notifications page. Each invite card shows the game emoji icon, game name, inviter's username and player tag, a live countdown timer showing time remaining, and 'Accept'/'Decline' buttons. After accepting, you'll be navigated to either the Match Found screen (if ready) or Lobby Waiting screen (if still waiting)."
+        }
+      ]
+    },
+    {
+      "category": "game_catalog",
+      "topics": [
+        {
+          "title": "Browsing Games",
+          "content": "Navigate to the Game Catalog page by clicking 'Browse Games' from the dashboard. The catalog displays all available games in a responsive grid. You can filter games by category (Board Game, Card Game, etc.), theme (Strategy, Fantasy, Sci-Fi, etc.), complexity (Easy, Medium, Hard), and player count (2 players, 2-4 players, 4+ players)."
+        },
+        {
+          "title": "Game Catalog Filters",
+          "content": "Use the 'Show Filters' button to toggle the filter panel visibility. The filter panel includes dropdowns for Category, Theme, Complexity, and Player Count. You can also toggle 'Show Favorites Only' to see only your favorited games."
+        },
+        {
+          "title": "Favoriting Games",
+          "content": "Each game card in the catalog has a star icon. Click the star to favorite/unfavorite a game. An empty star means not favorited; a filled/gold star means favorited."
+        },
+        {
+          "title": "Viewing Game Details",
+          "content": "Click on any game card in the catalog to view detailed information about that game on the Game Details page. The details page shows game name, description, status badge, complete rules, and available achievements. Note: There is NO 'Play Now' button on the game details page - you must return to the Dashboard to launch games."
+        },
+        {
+          "title": "Game Information",
+          "content": "The Game Details page displays comprehensive information including: category, theme, designer, publisher, release year, duration, complexity, render type, player count range, player types (Human, AI, etc.), rules summary, complete rules text, rules URL (if available), and a list of achievements with their unlock criteria."
+        }
+      ]
+    },
+    {
+      "category": "friends_and_social",
+      "topics": [
+        {
+          "title": "Finding Friends",
+          "content": "Navigate to the Find Friends page by clicking 'Find Friends' from the dashboard. This page displays all platform users in a grid format. Each user card shows their avatar, username, player tag, and color-coded status badge (Green=ONLINE, Blue=IN_GAME, Yellow=AWAY, Gray=OFFLINE). Note: There is no search bar - you must browse all users."
+        },
+        {
+          "title": "Sending Friend Requests",
+          "content": "On the Find Friends page, click the 'Add Friend' button next to any user to send them a friend request. After sending, the button will change to 'Request Sent' and become disabled. You can also accept or decline incoming friend requests directly from this page."
+        },
+        {
+          "title": "Managing Friends",
+          "content": "Go to the Friends page to manage your friendships and requests. The page has three tabs: 'Friends' (shows confirmed friends with their status and friendship date), 'Pending Requests' (incoming requests with Accept/Decline buttons), and 'Sent Requests' (outgoing requests you've sent). Note: There is currently no 'Remove Friend' or 'Cancel Request' functionality."
+        },
+        {
+          "title": "Accepting Friend Requests",
+          "content": "To accept friend requests, go to the Friends page and click the 'Pending Requests' tab. Each request shows the requester's avatar, username, player tag, and request timestamp. Click the green 'Accept' button to confirm the friendship, or the red 'Decline' button to reject it."
+        },
+        {
+          "title": "Friend Status Indicators",
+          "content": "Friend status is shown with color-coded badges: Green badge = ONLINE, Blue badge = IN_GAME, Yellow badge = AWAY, Gray badge = OFFLINE. These status indicators appear on user cards throughout the platform."
+        }
+      ]
+    },
+    {
+      "category": "profile",
+      "topics": [
+        {
+          "title": "Viewing Your Profile",
+          "content": "Click 'View Profile' from the dashboard to see your profile page. It displays your large avatar image (or colored circle with initials if no avatar), username, player tag, color-coded status indicator, and profile details including email, registration date, and last login timestamp."
+        },
+        {
+          "title": "Editing Your Profile",
+          "content": "On the Profile page, click 'Edit Profile' to modify your information. You can change your username, email, player tag, and avatar URL. The avatar preview updates in real-time as you type the URL. Click 'Save Changes' to submit updates or 'Cancel' to discard changes."
+        },
+        {
+          "title": "Profile Status",
+          "content": "Your profile shows a color-coded status badge: Green = ONLINE, Blue = IN_GAME, Yellow = AWAY, Gray = OFFLINE. This status is visible to other users and updates automatically based on your activity."
+        }
+      ]
+    },
+    {
+      "category": "notifications",
+      "topics": [
+        {
+          "title": "Notification Bell",
+          "content": "The Notification Bell is located in the Dashboard page header. It shows a red badge with the unread notification count (or '99+' if over 99) and a connection status indicator (yellow pulsing dot when disconnected). Click the bell to open a dropdown showing recent notifications."
+        },
+        {
+          "title": "Notification Dropdown",
+          "content": "The notification dropdown shows the last 5-10 notifications with their icon, title, message, timestamp, and unread indicator (blue dot if unread). It also displays the WebSocket connection status (Green dot + 'Connected' or Red dot + 'Disconnected'). Click 'View All' at the bottom to go to the full Notifications page."
+        },
+        {
+          "title": "Notifications Page",
+          "content": "Navigate to /notifications to view all notifications. Use the 'Unread' tab to see only unread notifications or 'All' tab to see everything. Each notification shows an icon, title/header, message body, and timestamp. Click a notification to mark it as read. Some notifications have action buttons (e.g., Friend requests with Accept/Decline, Game invites with Join/Ignore)."
+        },
+        {
+          "title": "Notification Types",
+          "content": "BanditGames supports several notification types: Friend request received, Friend request accepted, Game invite received, Match found, and System announcements. Each type has its own icon and may include action buttons."
+        },
+        {
+          "title": "Notification Toasts",
+          "content": "Real-time notification toasts appear automatically in the bottom-right corner when new notifications arrive via WebSocket. Toasts display the last 3 unread notifications only, showing the title and message with a dismiss button (X). They auto-dismiss after 5 seconds. Note: Toasts do NOT have action buttons - you must navigate to the relevant page to take action."
+        },
+        {
+          "title": "WebSocket Connection",
+          "content": "BanditGames uses WebSocket for real-time notifications. The connection status is visible in the notification bell dropdown (Green='Connected', Red='Disconnected'). The system automatically reconnects if disconnected. When disconnected, a yellow pulsing dot appears on the notification bell icon."
+        }
+      ]
+    },
+    {
+      "category": "navigation",
+      "topics": [
+        {
+          "title": "Platform Navigation Overview",
+          "content": "BanditGames does NOT have a unified top navigation bar. Instead, each page implements its own context-specific navigation buttons. The Dashboard has the most navigation options (Notification Bell, View Profile, Find Friends, Logout), while other pages typically have 'Back to Dashboard' and page-specific buttons."
+        },
+        {
+          "title": "Common Navigation Patterns",
+          "content": "Most pages include a 'Back to Dashboard' button to return to the main hub. The Dashboard serves as the central navigation point to access all major features: games, profile, friends, notifications, and game catalog."
+        },
+        {
+          "title": "Page URLs",
+          "content": "Main pages: Homepage (/), Dashboard (/dashboard), Profile (/profile), Edit Profile (/edit-profile), Game Catalog (/games), Game Details (/games/:id), Find Friends (/find-friends), Friends (/friends), Notifications (/notifications), Pending Invites (/invites), Admin Dashboard (/admin for admin users only)."
+        }
+      ]
+    },
+    {
+      "category": "admin",
+      "topics": [
+        {
+          "title": "Admin Dashboard",
+          "content": "Admin users can access the Admin Dashboard at /admin. This page shows analytics and platform management tools including: overview statistics (total users, matches, games, ML predictions), user analytics (status distribution, recent registrations), match analytics (status breakdown, average duration), most played games table, game catalog statistics, and ML model performance data. Access requires ADMIN role."
+        },
+        {
+          "title": "Registering New Games",
+          "content": "Authenticated users can register new games at /games/new. The form includes fields for game name, description, category, themes, designer, publisher, release year, duration, complexity, render type, player configuration (min/max players, supported player types), rules (URL, summary, complete rules), and achievements (with ID, name, icon, condition, description). Click 'Submit' to register or 'Cancel' to discard."
+        }
+      ]
+    },
+    {
+      "category": "tips_and_features",
+      "topics": [
+        {
+          "title": "Real-Time Updates",
+          "content": "Several elements update in real-time: notification bell badge (unread count), lobby player count during matchmaking, friend online status indicators, and notification toasts when new notifications arrive. The lobby waiting screen automatically polls the server every 2 seconds for updates."
+        },
+        {
+          "title": "Avatar Display",
+          "content": "Avatars are displayed as circular images throughout the platform. If a user has no avatar image set, a colored circle with their initials is shown instead. Avatar sizes vary by context (small in lists, large in profile)."
+        },
+        {
+          "title": "Status Badges",
+          "content": "BanditGames uses color-coded badges throughout the interface: User status (Green=ONLINE, Blue=IN_GAME, Yellow=AWAY, Gray=OFFLINE), Match status (Blue=In Progress, Green=Finished, Red=Cancelled, Yellow=Pending), Game status (Green=Active, Gray=Inactive, Yellow=Maintenance, Red=Deprecated), Connection status (Green=Connected, Red=Disconnected)."
+        },
+        {
+          "title": "Platform Limitations",
+          "content": "Current missing features: No 'Remove Friend' functionality on Friends page, No 'Cancel Request' button for sent friend requests, No search bar on Find Friends page (must browse all users), No 'Play Now' button on Game Details page (must return to Dashboard), Notification toasts have no action buttons (must navigate to dedicated pages)."
+        }
+      ]
+    }
+  ]
+}
